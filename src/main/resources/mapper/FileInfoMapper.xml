@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.rctest.mapper.FileInfoMapper">
+    <sql id="tableName">
+        t_file_info
+    </sql>
+ 
+    <sql id="findFiles">
+        select id, fileName, content from <include refid="tableName"></include>
+    </sql>
+
+    <insert id="insert" parameterType="com.example.rctest.dao.FileInfo">
+        insert into <include refid="tableName"></include>
+        (fileName, content)
+        values 
+        (#{fileInfo.fileName}, #{fileInfo.content})
+    </insert>
+
+    <update id="update" parameterType="com.example.rctest.dao.FileInfo">
+        update <include refid="tableName"></include>
+        <trim prefix="set" suffixOverrides="," suffix="">
+            <if test="null != fileInfo.fileName">
+                fileName = #{fileInfo.fileName},
+            </if>
+            <if test="null != fileInfo.content">
+                content = #{fileInfo.content},
+            </if>
+            updateTime = now(),
+        </trim>
+        where id = #{fileInfo.id}
+    </update>
+
+    <select id="getFileInfoList" resultType="com.example.rctest.dao.FileInfo">
+        <include refid="findFiles"></include> order by updateTime desc
+    </select>
+
+    <select id="getFileInfo" resultType="com.example.rctest.dao.FileInfo">
+        <include refid="findFiles"></include> where id=#{id}
+    </select>
+    
+
+</mapper>

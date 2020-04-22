@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View File Info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>View</h1>
+<table>
+    <tr>
+        <th>文件名</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="fileInfo : ${fileInfos}">
+        <td><a href="#" th:href="@{/download(id=${fileInfo.id})}" target="_blank" th:text="${fileInfo.fileName}"></a></td>
+        <td><a href="#" th:href="@{/edit(id=${fileInfo.id})}" target="_blank">Edit</a></td>
+    </tr>
+</table>
+</body>
+</html>

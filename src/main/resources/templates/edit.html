@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>File Info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Edit</h1>
+    <form action="#" th:action="@{/modify}" th:object="${fileInfo}" method="post">
+        <input type="hidden" name="id" th:value="*{id}">
+        <p>content: <textarea type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Save" /> </p>
+    </form>
+</body>
+</html>

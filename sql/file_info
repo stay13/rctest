@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `t_file_info`;
+CREATE TABLE `t_file_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `fileName` varchar(50) NOT NULL COMMENT '文件名称',
+  `content` text NOT NULL COMMENT '文件内容',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文件信息表';
